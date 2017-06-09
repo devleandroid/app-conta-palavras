@@ -71,15 +71,3 @@ Exemplo:
     android:configChanges="orientation|screenSize"
     android:label="@string/app_name" >
 </activity>
-
-…or create a new repository on the command line
-  echo "# app-conta-palavras" >> README.md
-  git init
-  git add README.md
-  git commit -m "first commit"
-  git remote add origin https://github.com/ledroid/app-conta-palavras.git
-  git push -u origin master
-
-…or push an existing repository from the command line
-  git remote add origin https://github.com/ledroid/app-conta-palavras.git
-  git push -u origin master
