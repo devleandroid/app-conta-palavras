@@ -68,50 +68,52 @@ public class MainActivity extends AppCompatActivity {
         click.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                carregarDadosTela();
+                if (palavra == null) {
+                    Toast.makeText( getApplicationContext(), "Digite uma palavra !", Toast.LENGTH_LONG ).show();
+                } else if(!palavra.isEmpty()){
+                    carregarDadosTela();
+                }
             }
         } );
     }
 
     private void carregarDadosTela(){
         palavra = editText.getText().toString();
-        if (palavra == null) {
-            Toast.makeText( getApplicationContext(), "Digite uma palavra !", Toast.LENGTH_LONG ).show();
-        } else if(!palavra.isEmpty()){
-            sequencia = new SequenciaCaracteres();
-            sequencia.setPalavra( palavra );
-            sequencia.verificar();
-            text.setText( "Palavra Digitada: " + palavra );
-            characters = sequencia.contaRepetidos();
-            repeticao.setText( "Palavra Repetida: " + characters );
-            //Log.d("Quantidade : ",String.valueOf( sequencia.contaQuantidade() ) );
-            //Log.d("Quantidade : ",String.valueOf( sequencia.contaCaracter() ) );
-            if(sequencia.contaQuantidade().size() > 0) {
-                listCharacter = sequencia.contaQuantidade();
-                quantidade.setText( "Quantidade que Repete: " + listCharacter );
-            }
-            long endTime = System.currentTimeMillis();
-            long timeS = endTime % 1000;
-            time.setText( "Tempo da Execução: " + timeS + " Milisegundos.");
+
+        sequencia = new SequenciaCaracteres();
+        sequencia.setPalavra( palavra );
+        sequencia.verificar();
+        text.setText( "Palavra Digitada: " + palavra );
+        characters = sequencia.contaRepetidos();
+        repeticao.setText( "Palavra Repetida: " + characters );
+        //Log.d("Quantidade : ",String.valueOf( sequencia.contaQuantidade() ) );
+        //Log.d("Quantidade : ",String.valueOf( sequencia.contaCaracter() ) );
+        if(sequencia.contaQuantidade().size() > 0) {
+            listCharacter = sequencia.contaQuantidade();
+            quantidade.setText( "Quantidade que Repete: " + listCharacter );
         }
+        long endTime = System.currentTimeMillis();
+        long timeS = endTime % 1000;
+        time.setText( "Tempo da Execução: " + timeS + " Milisegundos.");
+
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState( savedInstanceState );
         palavra = editText.getText().toString();
+        if (!palavra.isEmpty() && palavra != null) {
         text.setText( "Palavra Digitada: " + palavra );
         sequencia = new SequenciaCaracteres();
         sequencia.setPalavra( palavra );
         sequencia.verificar();
         characters = sequencia.contaRepetidos();
-        if (!characters.isEmpty()) {
-            repeticao.setText( "Palavra Repetida: " + characters );
-            listCharacter = sequencia.contaQuantidade();
-            quantidade.setText( "Quantidade que Repete: " + listCharacter );
-            long endTime = System.currentTimeMillis();
-            long timeS = endTime % 1000;
-            time.setText( "Tempo da Execução: " + timeS + " Milisegundos.");
+        repeticao.setText( "Palavra Repetida: " + characters );
+        listCharacter = sequencia.contaQuantidade();
+        quantidade.setText( "Quantidade que Repete: " + listCharacter );
+        long endTime = System.currentTimeMillis();
+        long timeS = endTime % 1000;
+        time.setText( "Tempo da Execução: " + timeS + " Milisegundos.");
         }
     }
 
