@@ -1,6 +1,5 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////         Aplicativo para contar palavras repetidas             ////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Aplicativo para contar palavras repetidas
+
 Este aplicativo foi desenvolvido com o principio didatico para se endender como funciona algumas classes, tipo Integer,
 Map e SortedMap. E também para servir de exemplo de uma aplicação android com algumas funcionalidades em tela, como rota
 ção de tela sem perder os dados, função de botão e como implementa-lo.
@@ -20,12 +19,14 @@ onRestoreInstanceState(Bundle savedInstanceState)
         sequencia.setPalavra( palavra );
         sequencia.verificar();
         characters = sequencia.contaRepetidos();
-        repeticao.setText( "Palavra Repetida: " + characters );
-        listCharacter = sequencia.contaQuantidade();
-        quantidade.setText( "Quantidade que Repete: " + listCharacter );
-        long endTime = System.currentTimeMillis();
-        long timeS = endTime % 1000;
-        time.setText( "Tempo da Execução: " + timeS + " Milisegundos.");
+        if (!characters.isEmpty()) {
+            repeticao.setText( "Palavra Repetida: " + characters );
+            listCharacter = sequencia.contaQuantidade();
+            quantidade.setText( "Quantidade que Repete: " + listCharacter );
+            long endTime = System.currentTimeMillis();
+            long timeS = endTime % 1000;
+            time.setText( "Tempo da Execução: " + timeS + " Milisegundos.");
+        }
     }
 
     @Override
