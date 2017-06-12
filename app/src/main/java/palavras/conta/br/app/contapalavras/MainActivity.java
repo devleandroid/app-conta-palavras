@@ -68,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
         click.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (palavra == null) {
+                palavra = editText.getText().toString();
+                if (palavra == null || palavra.isEmpty()) {
                     Toast.makeText( getApplicationContext(), "Digite uma palavra !", Toast.LENGTH_LONG ).show();
                 } else if(!palavra.isEmpty()){
                     carregarDadosTela();
@@ -78,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void carregarDadosTela(){
-        palavra = editText.getText().toString();
-
         sequencia = new SequenciaCaracteres();
         sequencia.setPalavra( palavra );
         sequencia.verificar();
